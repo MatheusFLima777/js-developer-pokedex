@@ -45,3 +45,20 @@ loadMoreButton.addEventListener('click', () => {
         loadPokemonItens(offset, limit)
     }
 })
+
+// Seleciona o botão "Modo Escuro"
+const darkModeButton = document.getElementById('ModoEscuro');
+
+// Adiciona um ouvinte de eventos para o clique no botão
+darkModeButton.addEventListener('click', toggleDarkMode);
+
+// Função para alternar entre os modos claro e escuro
+function toggleDarkMode() {
+    // Seleciona o elemento body
+    const body = document.body;
+    const pokemonList = document.pokemonList;
+
+    // Adiciona ou remove a classe 'dark-mode' no body
+body.classList.toggle('dark-mode');
+
+}

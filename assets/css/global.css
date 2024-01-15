@@ -5,7 +5,24 @@
 
 body {
     background-color: #f6f8fc;
+
 }
+
+body.dark-mode {
+    background-color: #000;
+    color: #fff;
+
+}
+
+
+.dark-mode {
+    background-color: #333;
+}
+.dark-mode h1Pokedex.dark-text {
+    color: white;
+
+}
+.dark-mode pokemonList
 
 .content {
     width: 100vw;
