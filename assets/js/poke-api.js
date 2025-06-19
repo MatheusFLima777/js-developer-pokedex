@@ -1,36 +1,44 @@
-
-const pokeApi = {}
-
-function convertPokeApiDetailToPokemon(pokeDetail) {
-    const pokemon = new Pokemon()
-    pokemon.number = pokeDetail.id
-    pokemon.name = pokeDetail.name
-
-    const types = pokeDetail.types.map((typeSlot) => typeSlot.type.name)
-    const [type] = types
-
-    pokemon.types = types
-    pokemon.type = type
-
-    pokemon.photo = pokeDetail.sprites.other.dream_world.front_default
-
-    return pokemon
-}
+const pokeApi = {};
 
 pokeApi.getPokemonDetail = (pokemon) => {
-    return fetch(pokemon.url)
-        .then((response) => response.json())
-        .then(convertPokeApiDetailToPokemon)
-}
+  return fetch(pokemon.url)
+    .then((response) => response.json())
+    .then((pokeDetail) => {
+      return {
+        number: pokeDetail.id,
+        name: pokeDetail.name,
+        types: pokeDetail.types.map((t) => t.type.name),
+        type: pokeDetail.types[0].type.name,
+        photo: pokeDetail.sprites.front_default,
+      };
+    });
+};
 
-pokeApi.getPokemons = (offset = 0, limit = 10) => {
-    const url = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`
+pokeApi.getPokemons = (offset = 0, limit = 10, type = null) => {
+  const url = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`;
+  return fetch(url)
+    .then((response) => response.json())
+    .then((jsonBody) => jsonBody.results)
+    .then((pokemons) => Promise.all(pokemons.map(pokeApi.getPokemonDetail)))
+    .then((pokemons) => {
+      // Filtra os Pokémons pelo tipo, se especificado
+      if (type) {
+        return pokemons.filter(pokemon => pokemon.types.includes(type));
+      }
+      return pokemons;
+    });
+};
 
+function filterPokemon(type) {
+  const pokemons = document.querySelectorAll('.pokemon');
 
-    return fetch(url)
-        .then((response) => response.json())
-        .then((jsonBody) => jsonBody.results)
-        .then((pokemons) => pokemons.map(pokeApi.getPokemonDetail))
-        .then((detailRequests) => Promise.all(detailRequests))
-        .then((pokemonsDetails) => pokemonsDetails)
+  pokemons.forEach(pokemon => {
+    const types = pokemon.getAttribute('data-type').split(',').map(t => t.trim());
+
+    if (type === 'all' || types.includes(type)) {
+      pokemon.style.display = 'flex'; // Ou 'block' conforme seu layout
+    } else {
+      pokemon.style.display = 'none';
+    }
+  });
 }

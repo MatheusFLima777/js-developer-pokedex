@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: linear-gradient(to bottom, #084493 50%, #4bb3fd 100%);
+  font-family: 'Open Sans', sans-serif;
+  text-align: center;
+  transition: 0.3s;
+}
+
+/* ============================== */
+/* HEADER */
+/* ============================== */
+.header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  height: 5rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.7);
+  z-index: 1000;
+}
+
+.header__logo img {
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* ============================== */
+/* NAVBAR */
+/* ============================== */
+.navbar {
+  display: flex;
+  align-items: center;
+}
+
+.navbar__menu {
+  display: flex;
+  list-style: none;
+  gap: 2.5rem;
+}
+
+.navbar__item {
+  position: relative;
+}
+
+.navbar__link {
+  all: unset;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.navbar__link:hover {
+  color: #C4151C;
+}
+
+/* Indicador abaixo do item */
+.navbar__item::before {
+  content: '';
+  position: absolute;
+  bottom: -0.6rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 0.4rem;
+  background-color: #C4151C;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.navbar__item:hover::before {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-4px);
+}
+
+/* ============================== */
+/* DARK MODE SWITCH */
+/* ============================== */
+.dark-mode-switch {
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+  position: relative;
+}
+
+.dark-mode-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  background-color: #ccc;
+  border-radius: 24px;
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  transition: 0.4s;
+}
+
+.slider .moon {
+  position: absolute;
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: #e0dada;
+  border-radius: 50%;
+  background-image: radial-gradient(circle at 6px 6px, #fff 20%, transparent 21%);
+  transition: 0.4s;
+}
+
+.dark-mode-switch input:checked + .slider {
+  background-color: #0A0A0A;
+}
+
+.dark-mode-switch input:checked + .slider .moon {
+  transform: translateX(26px);
+  background-color: #fff;
+  background-image: radial-gradient(circle at 6px 6px, #000 20%, transparent 21%);
+}
+
+/* ============================== */
+/* MAIN CONTAINER */
+/* ============================== */
+.container {
+  padding: 20px;
+}
+
+.title {
+  font-size: 48px;
+  color: white;
+  margin: 1rem 0;
+}
+
+/* ============================== */
+/* CARDS */
+/* ============================== */
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 0;
+  list-style: none;
+}
+
+.pokemon {
+  background: linear-gradient(to bottom, #d5f7ce, #0562e4);
+  width: 220px;
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.pokemon:hover {
+  transform: translateY(-5px);
+}
+
+.pokemon img {
+  width: 100px;
+  height: auto;
+}
+
+.pokemon h2 {
+  font-size: 1.4rem;
+  color: #000;
+  margin: 0.5rem 0;
+}
+
+.pokemon span {
+  font-size: 0.9rem;
+  color: #000;
+}
+
+/* ============================== */
+/* BOTÃO LOAD MORE */
+/* ============================== */
+.generate-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color:  #555;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.generate-btn:hover {
+  background-color: #222;
+}
+
+/* ============================== */
+/* DARK MODE */
+/* ============================== */
+body.dark-mode {
+  background: #0A0A0A;
+}
+
+body.dark-mode .header {
+  background-color: #000000;
+}
+
+body.dark-mode .navbar__link {
+  color: white;
+}
+
+body.dark-mode .navbar__link:hover {
+  color: #C4151C;
+}
+
+body.dark-mode .pokemon {
+  background: #1e1e1e;
+  color: white;
+}
+
+body.dark-mode .pokemon h2, 
+body.dark-mode .pokemon span {
+  color: white;
+}
+
+body.dark-mode .generate-btn {
+  background-color: #000000;
+}
+

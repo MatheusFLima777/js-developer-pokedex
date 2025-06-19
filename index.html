@@ -1,56 +1,70 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Pokedex</title>
-
-    <!-- Normalize CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
-        integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <!-- Font Roboto -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500;700&display=swap" rel="stylesheet">
-
-    <!-- Nosso CSS -->
-    <link rel="stylesheet" href="assets/css/global.css">
-    <link rel="stylesheet" href="assets/css/pokedex.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pokedex</title>
+  <link rel="stylesheet" href="/assets/css/style.css" />
 </head>
-
 <body>
-    <section class="content">
-      
-      <h1 class="h1Pokedex">Pokedex</h1>
+  <div class="header">  
+    <div class="header__logo">
+      <img src="/assets/Imgs/Captura de tela 2025-06-14 043636.png" class="logo-navbar" alt="Logo pokedex">
+    </div>
 
-        <ol id="pokemonList" class="pokemons">
-            <!-- ..... Pokemons here ..... -->
-        </ol>
+    <nav class="navbar">
+      <ul class="navbar__menu">
+        <li class="navbar__item">
+          <button class="navbar__link" onclick="filterPokemon('all')">
+            <i data-type="all"></i><span>Todos</span>
+          </button>
+        </li>
+        <li class="navbar__item">
+          <button class="navbar__link" onclick="filterPokemon('fire')">
+            <i data-type="fire"></i><span>Fogo</span>
+          </button>
+        </li>
+        <li class="navbar__item">
+          <button class="navbar__link" onclick="filterPokemon('water')">
+            <i data-type="water"></i><span>Água</span>
+          </button>
+        </li>
+        <li class="navbar__item">
+          <button class="navbar__link" onclick="filterPokemon('grass')">
+            <i data-type="grass"></i><span>Planta</span>
+          </button>
+        </li>
+        <li class="navbar__item">
+          <button class="navbar__link" onclick="filterPokemon('normal')">
+            <i data-type="normal"></i><span>Normal</span>
+          </button>
+        </li>
+        <li class="navbar__item">
+          <button class="navbar__link" onclick="filterPokemon('bug')">
+            <i data-type="bug"></i><span>Insetos</span>
+          </button>
+        </li>
 
-        <div class="pagination">
-            <button id="loadMoreButton" type="button">
-                Mais Pokemons
-            </button>
-       
-            <div id="DarkMode">
-                <button id="ModoEscuro" type="button">
-                    Modo Escuro
-                </button>
-            </div>
-        </div>     
+        <!-- Botão modo escuro -->
+        <label class="dark-mode-switch">
+          <input type="checkbox" id="darkModeToggle" />
+          <span class="slider">
+            <span class="moon"></span>
+          </span>
+        </label>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="container">
+    <h1 class="title">Pokedex</h1>
+
+    <ul id="pokemonList" class="cards"></ul>
+
+    <button id="loadMoreButton" class="generate-btn">Gere mais Pokemons</button>
+  </div>
   
-    </section>
-
-    <!-- Nosso JS -->
-    <script src="assets/js/pokemon-model.js"></script>
-    <script src="assets/js/poke-api.js"></script>
-
-    <script src="assets/js/main.js"></script>
+  <script src="/assets/js/poke-api.js"></script>
+  <script src="/assets/js/main.js"></script>
 </body>
-
 </html>
